@@ -31,7 +31,7 @@ class _BMIEntryItemState extends State<BMIEntryItem> {
 
     return InkWell(
       onTap: onExpandItem,
-      child: Container(
+      child: SizedBox(
         height: 140,
         width: 80,
         child: Card(
@@ -47,7 +47,7 @@ class _BMIEntryItemState extends State<BMIEntryItem> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Height: ${height}',
+                    'Height: $height',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(width: 30),

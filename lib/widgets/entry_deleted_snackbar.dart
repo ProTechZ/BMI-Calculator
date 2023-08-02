@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class EntryDeletedSnackbar extends StatelessWidget {
-  EntryDeletedSnackbar({super.key, required this.onUndoAction});
+  const EntryDeletedSnackbar({super.key, required this.onUndoAction});
 
   final void Function() onUndoAction;
 
   @override
   Widget build(BuildContext context) {
     return SnackBar(
-      content: Container(
+      content: const SizedBox(
         height: 100,
         width: 100,
-        child: const Text('Deleted BMI Entry'),
+        child: Text('Deleted BMI Entry'),
       ),
       action: SnackBarAction(
         label: 'Undo',

@@ -14,7 +14,7 @@ extension StringExtension on String {
 
 final kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 131, 56, 236),
-  secondary: Color.fromARGB(255,205, 175, 247),
+  secondary: const Color.fromARGB(255,205, 175, 247),
 );
 
 void main() {

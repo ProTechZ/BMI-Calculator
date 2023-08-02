@@ -6,6 +6,7 @@ import 'package:bmi_calculator/widgets/order_by_dropdown.dart';
 import 'package:bmi_calculator/widgets/unit_system_dropdown.dart';
 import 'package:flutter/material.dart';
 
+// ignore: constant_identifier_names
 enum OrderByOption { date_added, bmi, height, weight }
 
 class BMICalculator extends StatefulWidget {
@@ -114,7 +115,6 @@ class _BMICalculatorState extends State<BMICalculator> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Chart'),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
