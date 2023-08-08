@@ -14,7 +14,7 @@ extension StringExtension on String {
 
 final kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 131, 56, 236),
-  secondary: const Color.fromARGB(255,205, 175, 247),
+  secondary: const Color.fromARGB(255, 205, 175, 247),
 );
 
 void main() {
@@ -42,45 +42,6 @@ void main() {
         cardTheme: const CardTheme().copyWith(
           color: kColorScheme.secondary,
           margin: const EdgeInsets.all(10),
-        ),
-        textTheme: const TextTheme().copyWith(
-          titleMedium: TextStyle(
-            color: kColorScheme.onPrimaryContainer,
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-          ),
-          titleLarge: const TextStyle(fontSize: 21),
-          bodySmall: TextStyle(
-            color: kColorScheme.onPrimaryContainer,
-            fontSize: 17,
-          ),
-          bodyMedium: const TextStyle(fontSize: 17),
-          bodyLarge: const TextStyle(fontSize: 19),
-          labelMedium: TextStyle(
-            color: kColorScheme.onPrimaryContainer,
-            fontSize: 19,
-          ),
-          displaySmall: TextStyle(
-            fontSize: 11,
-            color: kColorScheme.onPrimaryContainer,
-          ),
-          displayMedium: TextStyle(
-            fontSize: 16,
-            color: kColorScheme.onPrimaryContainer,
-          ),
-          displayLarge: TextStyle(
-            fontSize: 19,
-            fontWeight: FontWeight.w500,
-            color: kColorScheme.onPrimaryContainer,
-          ),
-          labelSmall: TextStyle(
-            color: kColorScheme.onPrimaryContainer,
-            fontSize: 16,
-          ),
-          titleSmall: TextStyle(
-            color: kColorScheme.onPrimaryContainer,
-            fontSize: 20,
-          ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(

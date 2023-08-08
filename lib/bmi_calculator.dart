@@ -1,5 +1,6 @@
 import 'package:bmi_calculator/data/entries.dart';
 import 'package:bmi_calculator/model/entry.dart';
+import 'package:bmi_calculator/widgets/bmi_chart.dart';
 import 'package:bmi_calculator/widgets/entry_list.dart';
 import 'package:bmi_calculator/widgets/new_entry.dart';
 import 'package:bmi_calculator/widgets/order_by_dropdown.dart';
@@ -21,8 +22,11 @@ class BMICalculator extends StatefulWidget {
 class _BMICalculatorState extends State<BMICalculator> {
   UnitSystem selectedUnitSystem = UnitSystem.metric;
   OrderByOption orderby = OrderByOption.date_added;
-
+  BMIChart chart = BMIChart(bmiEntries: entries); 
+  // defining the chart here so that it's data isn't affected by the order_by changeds
+  
   final bmiEntries = entries;
+
 
   void addEntry(BMIEntry entry) {
     setState(() {
@@ -50,7 +54,6 @@ class _BMICalculatorState extends State<BMICalculator> {
     }
   }
 
-// polo g - da goat, die a legend, hall of fame2
   void onChangeOrderBy(OrderByOption? value) {
     if (value == null) {
       return;
@@ -100,6 +103,8 @@ class _BMICalculatorState extends State<BMICalculator> {
 
   @override
   Widget build(BuildContext context) {
+    final c = Theme.of(context).colorScheme;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('BMI Calculator'),
@@ -115,6 +120,7 @@ class _BMICalculatorState extends State<BMICalculator> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -128,12 +134,58 @@ class _BMICalculatorState extends State<BMICalculator> {
                 ),
               ],
             ),
+            const SizedBox(height: 15),
+
+            chart,
             Expanded(
-                child: BMIEntryList(
-                    bmiEntries: bmiEntries, onRemoveEntry: onRemoveEntry)),
+              child: BMIEntryList(
+                bmiEntries: bmiEntries,
+                onRemoveEntry: onRemoveEntry,
+              ),
+            ),
+            // Row(
+            //   children: [
+            //     x(context, c.primary, 'primary', white: true),
+            //     x(context, c.onPrimary, 'onPrimary'),
+            //     x(context, c.primaryContainer, 'primaryContainer'),
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     x(context, c.onPrimaryContainer, 'onPrimaryContainer', white: true),
+            //     x(context, c.secondary, 'secondary', ),
+            //     x(context, c.onSecondary, 'onSecondary'),
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     x(context, c.secondaryContainer, 'secondaryContainer'),
+            //     x(context, c.onSecondaryContainer, 'onSecondaryContainer',
+            //         white: true),
+            //   ],
+            // ),
           ],
         ),
       ),
     );
   }
+}
+
+Container x(BuildContext context, Color color, String text,
+    {bool white = false}) {
+  Color textColor = Colors.black;
+  if (white) {
+    textColor = Colors.white;
+  }
+
+  return Container(
+    alignment: Alignment.center,
+    decoration: BoxDecoration(border: Border.all(width: 1), color: color),
+    height: 50,
+    width: 130,
+    child: Text(
+      text,
+      style: TextStyle(color: textColor),
+    ),
+  );
 }

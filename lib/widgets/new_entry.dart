@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/data/entries.dart';
 import 'package:bmi_calculator/model/entry.dart';
 import 'package:bmi_calculator/widgets/error_dialog.dart';
 import 'package:bmi_calculator/widgets/unit_system_dropdown.dart';
@@ -65,6 +66,12 @@ class _NewBMIEntryState extends State<NewBMIEntry> {
     if (enteredHeight == null || enteredWeight == null) {
       showErrorDialog(
           'Please make sure you have entered a value for weight and height.');
+      return;
+    }
+
+    final dates = entries.map((entry) => dateFormatter.format(entry.date)).toList();
+    if (dates.contains(dateFormatter.format(selectedDate))) {
+      showErrorDialog('There is already an entry using this date.');
       return;
     }
 
