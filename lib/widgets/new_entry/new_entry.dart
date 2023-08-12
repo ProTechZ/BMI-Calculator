@@ -1,6 +1,6 @@
 import 'package:bmi_calculator/data/entries.dart';
 import 'package:bmi_calculator/model/entry.dart';
-import 'package:bmi_calculator/widgets/error_dialog.dart';
+import 'package:bmi_calculator/widgets/new_entry/error_dialog.dart';
 import 'package:bmi_calculator/widgets/unit_system_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

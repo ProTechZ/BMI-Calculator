@@ -1,5 +1,5 @@
 import 'package:bmi_calculator/model/entry.dart';
-import 'package:bmi_calculator/widgets/entry_item.dart';
+import 'package:bmi_calculator/widgets/bmi_entries/entry_item.dart';
 import 'package:flutter/material.dart';
 
 class BMIEntryList extends StatelessWidget {
@@ -27,9 +27,11 @@ class BMIEntryList extends StatelessWidget {
               color: Theme.of(context).colorScheme.error,
               margin: Theme.of(context).cardTheme.margin,
             ),
-            child: SizedBox(
-              width: double.infinity,
-              child: BMIEntryItem(entry: entry),
+            child: Column(
+              children: [
+                BMIEntryItem(entry: entry),
+                const SizedBox(height: 10),
+              ],
             ),
           );
         },

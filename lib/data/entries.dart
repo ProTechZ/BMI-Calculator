@@ -33,16 +33,16 @@ final entries = [
     date: DateTime(now.year, now.month, now.day - 4),
     system: UnitSystem.metric,
   ),
-  // BMIEntry(
-  //   height: 160,
-  //   weight: 102,
-  //   date: DateTime(now.year, now.month, now.day - 5),
-  //   system: UnitSystem.metric,
-  // ),
-  // BMIEntry(
-  //   height: 170,
-  //   weight: 107,
-  //   date: DateTime(now.year, now.month, now.day - 6),
-  //   system: UnitSystem.metric,
-  // ),
+  BMIEntry(
+    height: 160,
+    weight: 102,
+    date: DateTime(now.year, now.month, now.day - 5),
+    system: UnitSystem.metric,
+  ),
+  BMIEntry(
+    height: 170,
+    weight: 107,
+    date: DateTime(now.year, now.month, now.day - 6),
+    system: UnitSystem.metric,
+  ),
 ];

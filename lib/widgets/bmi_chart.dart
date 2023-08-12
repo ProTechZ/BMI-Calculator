@@ -14,7 +14,7 @@ class BMIChart extends StatelessWidget {
     final copy = [...bmiEntries];
 
     // sorts the list by the entries' dates in descending order so that the most recent dates are first
-    // and we want to get the most recent dates
+    // and we want to get the 7 most recent dates
     copy.sort((entry1, entry2) => entry2.date.compareTo(entry1.date));
 
     if (bmiEntries.length >= 7) {
@@ -30,31 +30,44 @@ class BMIChart extends StatelessWidget {
     final List<FlSpot> dataSpots = [];
 
     // reversing the list so that the dates are in ascending order
-    final x = bmis.reversed.toList();
+    final y = bmis.reversed.toList();
 
-    for (var i = 0; i < x.length; i++) {
-      dataSpots.add(FlSpot(i.toDouble(), x[i]));
+    for (var i = 0; i < y.length; i++) {
+      dataSpots.add(FlSpot(i.toDouble(), y[i]));
     }
 
     return dataSpots;
   }
 
+  // List<DateTime> get dates {
+
+  // }
+
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 0, 25, 0),
       child: AspectRatio(
         aspectRatio: 2,
         child: LineChart(
           LineChartData(
-            lineBarsData: [LineChartBarData(spots: spots)],
+            lineBarsData: [
+              LineChartBarData(
+                spots: spots,
+                color: colorScheme.primary,
+              )
+            ],
             borderData: FlBorderData(
               border: const Border(bottom: BorderSide(), left: BorderSide()),
             ),
+            gridData: const FlGridData(show: false),
             titlesData: FlTitlesData(
               bottomTitles: AxisTitles(
-                sideTitles: _bottomTitles(bmiEntries.map((e) => e.date).toList().reversed.toList()),
                 axisNameWidget: const Text('Date'),
+                sideTitles:
+                    _bottomTitles(bmiEntries.map((e) => e.date).toList()),
               ),
               leftTitles: const AxisTitles(
                 sideTitles: SideTitles(showTitles: false),
@@ -70,7 +83,7 @@ class BMIChart extends StatelessWidget {
             lineTouchData: LineTouchData(
               enabled: true,
               touchTooltipData: LineTouchTooltipData(
-                tooltipBgColor: Colors.blue,
+                tooltipBgColor: colorScheme.onPrimaryContainer,
                 tooltipRoundedRadius: 20.0,
                 showOnTopOfTheChartBoxArea: true,
                 fitInsideHorizontally: true,
@@ -112,7 +125,8 @@ class BMIChart extends StatelessWidget {
 }
 
 SideTitles _bottomTitles(List<DateTime> dates) {
-  final formattedDates = dates.map((e) => dateFormatter.format(e)).toList();
+  final formattedDates =
+      dates.reversed.map((e) => dateFormatter.format(e)).toList();
 
   return SideTitles(
     showTitles: true,

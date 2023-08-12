@@ -19,10 +19,6 @@ class ExpandedEntryItem extends StatelessWidget {
     final status = entry.status[0] as BMIStatus;
     final statusExtra = entry.status[1] as String;
 
-    final displaySmall = Theme.of(context).textTheme.displaySmall;
-    final displayMedium = Theme.of(context).textTheme.displayMedium;
-    final displayLarge = Theme.of(context).textTheme.displayLarge;
-
     Color statusColor = Colors.blue; // underweight
 
     if (status == BMIStatus.healthy) {
@@ -39,36 +35,33 @@ class ExpandedEntryItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: Column(
           children: [
-            Text(dateFormatter.format(entry.date), style: displayLarge),
+            Text(
+              dateFormatter.format(entry.date),
+            ),
             const SizedBox(height: 40),
-            Text('Height: $height', style: displayMedium),
+            Text('Height: $height'),
             const SizedBox(height: 10),
-            Text('Weight: $weight', style: displayMedium),
+            Text('Weight: $weight'),
             const SizedBox(height: 10),
-            Text('Body Mass Index: ${entry.bmi}', style: displayMedium),
+            Text('Body Mass Index: ${entry.bmi}'),
             const SizedBox(height: 30),
             RichText(
               text: TextSpan(
                 children: [
-                  TextSpan(text: 'Status: ', style: displayMedium),
+                  TextSpan(text: 'Status: '),
                   TextSpan(
                     text: status.name.capitalize(),
-                    style: displayMedium!.copyWith(color: statusColor),
+                    style: TextStyle(color: statusColor),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 10),
-            Text(
-              statusExtra,
-              textAlign: TextAlign.center,
-              style: displayMedium,
-            ),
+            Text(statusExtra, textAlign: TextAlign.center),
             const Spacer(),
             Text(
               '*According to the National Health and Medical Research Council, a healthy BMI is between 20-25 for most adults*',
               textAlign: TextAlign.center,
-              style: displaySmall,
             ),
           ],
         ),

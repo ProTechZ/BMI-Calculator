@@ -14,7 +14,7 @@ extension StringExtension on String {
 
 final kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 131, 56, 236),
-  secondary: const Color.fromARGB(255, 205, 175, 247),
+  secondary: Color.fromARGB(255, 255, 235, 13),
 );
 
 void main() {
@@ -27,13 +27,11 @@ void main() {
         useMaterial3: true,
         colorScheme: kColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
-          titleTextStyle: GoogleFonts.lobsterTwo(
-            letterSpacing: 2.5,
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
+          titleTextStyle: GoogleFonts.montserrat(
+              fontSize: 27,
+              fontWeight: FontWeight.w800,
+              color: kColorScheme.onPrimary),
           backgroundColor: kColorScheme.primary,
-          foregroundColor: kColorScheme.onPrimary,
           iconTheme: const IconThemeData().copyWith(
             color: kColorScheme.onPrimary,
             size: 35,
@@ -41,8 +39,8 @@ void main() {
         ),
         cardTheme: const CardTheme().copyWith(
           color: kColorScheme.secondary,
-          margin: const EdgeInsets.all(10),
         ),
+        textTheme: GoogleFonts.montserratTextTheme().copyWith(),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),

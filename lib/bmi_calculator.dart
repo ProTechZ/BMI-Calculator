@@ -1,8 +1,10 @@
 import 'package:bmi_calculator/data/entries.dart';
+import 'package:bmi_calculator/main.dart';
 import 'package:bmi_calculator/model/entry.dart';
 import 'package:bmi_calculator/widgets/bmi_chart.dart';
-import 'package:bmi_calculator/widgets/entry_list.dart';
-import 'package:bmi_calculator/widgets/new_entry.dart';
+import 'package:bmi_calculator/widgets/bmi_entries/entry_item.dart';
+import 'package:bmi_calculator/widgets/bmi_entries/entry_list.dart';
+import 'package:bmi_calculator/widgets/new_entry/new_entry.dart';
 import 'package:bmi_calculator/widgets/order_by_dropdown.dart';
 import 'package:bmi_calculator/widgets/unit_system_dropdown.dart';
 import 'package:flutter/material.dart';
@@ -22,11 +24,10 @@ class BMICalculator extends StatefulWidget {
 class _BMICalculatorState extends State<BMICalculator> {
   UnitSystem selectedUnitSystem = UnitSystem.metric;
   OrderByOption orderby = OrderByOption.date_added;
-  BMIChart chart = BMIChart(bmiEntries: entries); 
-  // defining the chart here so that it's data isn't affected by the order_by changeds
-  
-  final bmiEntries = entries;
+  BMIChart chart = BMIChart(bmiEntries: entries);
+  // defining the chart here so that it's data isn't affected by the order_by changes
 
+  final bmiEntries = entries;
 
   void addEntry(BMIEntry entry) {
     setState(() {
@@ -135,7 +136,6 @@ class _BMICalculatorState extends State<BMICalculator> {
               ],
             ),
             const SizedBox(height: 15),
-
             chart,
             Expanded(
               child: BMIEntryList(
@@ -143,27 +143,33 @@ class _BMICalculatorState extends State<BMICalculator> {
                 onRemoveEntry: onRemoveEntry,
               ),
             ),
-            // Row(
-            //   children: [
-            //     x(context, c.primary, 'primary', white: true),
-            //     x(context, c.onPrimary, 'onPrimary'),
-            //     x(context, c.primaryContainer, 'primaryContainer'),
-            //   ],
-            // ),
-            // Row(
-            //   children: [
-            //     x(context, c.onPrimaryContainer, 'onPrimaryContainer', white: true),
-            //     x(context, c.secondary, 'secondary', ),
-            //     x(context, c.onSecondary, 'onSecondary'),
-            //   ],
-            // ),
-            // Row(
-            //   children: [
-            //     x(context, c.secondaryContainer, 'secondaryContainer'),
-            //     x(context, c.onSecondaryContainer, 'onSecondaryContainer',
-            //         white: true),
-            //   ],
-            // ),
+  
+            Row(
+              children: [
+                x(context, c.primary, 'primary', white: true),
+                x(context, c.onPrimary, 'onPrimary'),
+                x(context, c.primaryContainer, 'primaryContainer'),
+              ],
+            ),
+            Row(
+              children: [
+                x(context, c.onPrimaryContainer, 'onPrimaryContainer',
+                    white: true),
+                x(
+                  context,
+                  c.secondary,
+                  'secondary',
+                ),
+                x(context, c.onSecondary, 'onSecondary'),
+              ],
+            ),
+            Row(
+              children: [
+                x(context, c.secondaryContainer, 'secondaryContainer'),
+                x(context, c.onSecondaryContainer, 'onSecondaryContainer',
+                    white: true),
+              ],
+            ),
           ],
         ),
       ),
