@@ -69,7 +69,8 @@ class _NewBMIEntryState extends State<NewBMIEntry> {
       return;
     }
 
-    final dates = entries.map((entry) => dateFormatter.format(entry.date)).toList();
+    final dates =
+        entries.map((entry) => dateFormatter.format(entry.date)).toList();
     if (dates.contains(dateFormatter.format(selectedDate))) {
       showErrorDialog('There is already an entry using this date.');
       return;
@@ -108,6 +109,8 @@ class _NewBMIEntryState extends State<NewBMIEntry> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Column(
@@ -115,8 +118,7 @@ class _NewBMIEntryState extends State<NewBMIEntry> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Add New Entry',
-                  style: Theme.of(context).textTheme.titleSmall),
+              Text('Add New Entry', style: textTheme.titleMedium),
               UnitSystemDropDown(
                 selectedUnitSystem: selectedUnitSystem,
                 onChange: onChangeUnitSystem,
@@ -130,10 +132,10 @@ class _NewBMIEntryState extends State<NewBMIEntry> {
                 child: TextField(
                   controller: heightController,
                   keyboardType: TextInputType.number,
-                  style: Theme.of(context).textTheme.labelMedium,
+                  style: textTheme.labelMedium,
                   decoration: InputDecoration(
                     suffix: Text(heightSuffix),
-                    label: const Text('Height'),
+                    label: Text('Height', style: textTheme.labelSmall),
                   ),
                 ),
               ),
@@ -141,11 +143,11 @@ class _NewBMIEntryState extends State<NewBMIEntry> {
               Expanded(
                 child: TextField(
                   controller: weightController,
-                  style: Theme.of(context).textTheme.labelMedium,
+                  style: textTheme.labelMedium,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     suffix: Text(weightSuffix),
-                    label: const Text('Weight'),
+                    label: Text('Weight', style: textTheme.labelSmall),
                   ),
                 ),
               ),

@@ -1,8 +1,6 @@
 import 'package:bmi_calculator/data/entries.dart';
-import 'package:bmi_calculator/main.dart';
 import 'package:bmi_calculator/model/entry.dart';
 import 'package:bmi_calculator/widgets/bmi_chart.dart';
-import 'package:bmi_calculator/widgets/bmi_entries/entry_item.dart';
 import 'package:bmi_calculator/widgets/bmi_entries/entry_list.dart';
 import 'package:bmi_calculator/widgets/new_entry/new_entry.dart';
 import 'package:bmi_calculator/widgets/order_by_dropdown.dart';
@@ -31,7 +29,7 @@ class _BMICalculatorState extends State<BMICalculator> {
 
   void addEntry(BMIEntry entry) {
     setState(() {
-      bmiEntries.insert(0, entry);
+      bmiEntries.add(entry);
     });
   }
 

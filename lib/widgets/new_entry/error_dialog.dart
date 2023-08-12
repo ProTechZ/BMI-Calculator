@@ -8,17 +8,15 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(
+      title: const Text(
         'Invalid Content',
-        style: Theme.of(context).textTheme.titleMedium,
+        style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
       ),
-      content: Text(msg, style: Theme.of(context).textTheme.bodySmall),
+      content: Text(msg, style: const TextStyle(fontSize: 16)),
       actions: [
         TextButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Okay'),
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Okay', style: TextStyle(fontSize: 16)),
         )
       ],
     );

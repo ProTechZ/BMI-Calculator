@@ -40,7 +40,25 @@ void main() {
         cardTheme: const CardTheme().copyWith(
           color: kColorScheme.secondary,
         ),
-        textTheme: GoogleFonts.montserratTextTheme().copyWith(),
+        textTheme: GoogleFonts.montserratTextTheme().copyWith(
+          labelSmall: GoogleFonts.montserrat(
+            // new_entry (textfields)
+            color: kColorScheme.onPrimaryContainer,
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
+          labelMedium: GoogleFonts.montserrat(
+            // all dropdowns, new_entry (textfields user text)
+            color: kColorScheme.onPrimaryContainer,
+            fontSize: 17,
+          ),
+          titleMedium: GoogleFonts.montserrat(
+            // new_entry (title), expanded_entry_item (title)
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),

@@ -1,4 +1,3 @@
-import 'package:bmi_calculator/main.dart';
 import 'package:bmi_calculator/model/entry.dart';
 import 'package:bmi_calculator/widgets/bmi_entries/expanded_entry_item.dart';
 import 'package:flutter/material.dart';
@@ -54,8 +53,7 @@ class _BMIEntryItemState extends State<BMIEntryItem> {
                     Text(
                       dateSeperator[1],
                       style: TextStyle(
-                        color: colorScheme
-                            .onPrimaryContainer, //   Color.fromARGB(255, 82, 82, 82),
+                        color: colorScheme.onPrimaryContainer,
                         fontSize: 30,
                       ),
                     ),
@@ -73,7 +71,7 @@ class _BMIEntryItemState extends State<BMIEntryItem> {
               Container(
                 height: double.infinity,
                 width: 2,
-                color: colorScheme.primary,
+                color: colorScheme.onPrimaryContainer,
               ),
               Expanded(
                 child: SizedBox(
