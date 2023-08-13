@@ -14,7 +14,7 @@ extension StringExtension on String {
 
 final kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 131, 56, 236),
-  secondary: Color.fromARGB(255, 255, 235, 13),
+  secondary: const Color.fromARGB(255, 255, 235, 13),
 );
 
 void main() {
@@ -37,9 +37,7 @@ void main() {
             size: 35,
           ),
         ),
-        cardTheme: const CardTheme().copyWith(
-          color: kColorScheme.secondary,
-        ),
+        cardTheme: const CardTheme().copyWith(color: kColorScheme.secondary),
         textTheme: GoogleFonts.montserratTextTheme().copyWith(
           labelSmall: GoogleFonts.montserrat(
             // new_entry (textfields)

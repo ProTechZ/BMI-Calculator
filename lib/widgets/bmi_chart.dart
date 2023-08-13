@@ -39,18 +39,16 @@ class BMIChart extends StatelessWidget {
     return dataSpots;
   }
 
-  // List<DateTime> get dates {
-
-  // }
-
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(10, 0, 25, 0),
+      height: 250,
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(20, 0, 35, 0),
       child: AspectRatio(
-        aspectRatio: 2,
+        aspectRatio: 1,
         child: LineChart(
           LineChartData(
             lineBarsData: [

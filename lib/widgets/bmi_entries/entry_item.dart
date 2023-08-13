@@ -71,7 +71,7 @@ class _BMIEntryItemState extends State<BMIEntryItem> {
               Container(
                 height: double.infinity,
                 width: 2,
-                color: colorScheme.onPrimaryContainer,
+                color: Colors.white,
               ),
               Expanded(
                 child: SizedBox(

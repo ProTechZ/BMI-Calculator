@@ -158,7 +158,7 @@ class _NewBMIEntryState extends State<NewBMIEntry> {
             children: [
               Text(
                 dateFormatter.format(selectedDate),
-                style: Theme.of(context).textTheme.labelSmall,
+                style: textTheme.labelSmall,
               ),
               IconButton(
                 onPressed: onPickDate,

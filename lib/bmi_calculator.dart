@@ -22,8 +22,10 @@ class BMICalculator extends StatefulWidget {
 class _BMICalculatorState extends State<BMICalculator> {
   UnitSystem selectedUnitSystem = UnitSystem.metric;
   OrderByOption orderby = OrderByOption.date_added;
-  BMIChart chart = BMIChart(bmiEntries: entries);
-  // defining the chart here so that it's data isn't affected by the order_by changes
+  Padding chart = Padding(
+    padding: const EdgeInsets.fromLTRB(0, 20, 0, 30),
+    child: BMIChart(bmiEntries: entries),
+  ); // defining the chart here so that it's data isn't affected by the order_by changes
 
   final bmiEntries = entries;
 
@@ -100,9 +102,34 @@ class _BMICalculatorState extends State<BMICalculator> {
     });
   }
 
+  Widget dropdowns(bool isPortrait) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        OrderByDowndrop(
+          selectedOrderByOption: orderby,
+          onChangeOrderBy: onChangeOrderBy,
+        ),
+        isPortrait ? const SizedBox() : const SizedBox(width: 100),
+        UnitSystemDropDown(
+          selectedUnitSystem: selectedUnitSystem,
+          onChange: onChangeUnitSystem,
+        ),
+      ],
+    );
+  }
+
+  Widget get bmiEntryList {
+    return BMIEntryList(
+      bmiEntries: bmiEntries,
+      onRemoveEntry: onRemoveEntry,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final c = Theme.of(context).colorScheme;
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
 
     return Scaffold(
       appBar: AppBar(
@@ -115,81 +142,30 @@ class _BMICalculatorState extends State<BMICalculator> {
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: isPortrait
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                OrderByDowndrop(
-                  selectedOrderByOption: orderby,
-                  onChangeOrderBy: onChangeOrderBy,
+                chart,
+                dropdowns(isPortrait),
+                Expanded(child: bmiEntryList),
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(child: chart),
+                Column(
+                  children: [
+                    dropdowns(isPortrait),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: bmiEntryList,
+                    )
+                  ],
                 ),
-                UnitSystemDropDown(
-                  selectedUnitSystem: selectedUnitSystem,
-                  onChange: onChangeUnitSystem,
-                ),
               ],
             ),
-            const SizedBox(height: 15),
-            chart,
-            Expanded(
-              child: BMIEntryList(
-                bmiEntries: bmiEntries,
-                onRemoveEntry: onRemoveEntry,
-              ),
-            ),
-  
-            Row(
-              children: [
-                x(context, c.primary, 'primary', white: true),
-                x(context, c.onPrimary, 'onPrimary'),
-                x(context, c.primaryContainer, 'primaryContainer'),
-              ],
-            ),
-            Row(
-              children: [
-                x(context, c.onPrimaryContainer, 'onPrimaryContainer',
-                    white: true),
-                x(
-                  context,
-                  c.secondary,
-                  'secondary',
-                ),
-                x(context, c.onSecondary, 'onSecondary'),
-              ],
-            ),
-            Row(
-              children: [
-                x(context, c.secondaryContainer, 'secondaryContainer'),
-                x(context, c.onSecondaryContainer, 'onSecondaryContainer',
-                    white: true),
-              ],
-            ),
-          ],
-        ),
-      ),
     );
   }
-}
-
-Container x(BuildContext context, Color color, String text,
-    {bool white = false}) {
-  Color textColor = Colors.black;
-  if (white) {
-    textColor = Colors.white;
-  }
-
-  return Container(
-    alignment: Alignment.center,
-    decoration: BoxDecoration(border: Border.all(width: 1), color: color),
-    height: 50,
-    width: 130,
-    child: Text(
-      text,
-      style: TextStyle(color: textColor),
-    ),
-  );
 }

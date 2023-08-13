@@ -17,6 +17,7 @@ class BMIEntryList extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
       child: ListView.builder(
+        shrinkWrap: true,
         itemCount: bmiEntries.length,
         itemBuilder: (context, index) {
           final entry = bmiEntries[index];

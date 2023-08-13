@@ -1,7 +1,6 @@
 import 'package:bmi_calculator/main.dart';
 import 'package:bmi_calculator/model/entry.dart';
 import 'package:flutter/material.dart';
-
 import 'package:intl/intl.dart';
 
 final dateFormatter = DateFormat.yMMMMEEEEd();
@@ -39,18 +38,24 @@ class ExpandedEntryItem extends StatelessWidget {
     final status = entry.status[0] as BMIStatus;
     final statusExtra = entry.status[1] as String;
 
-    Color statusColor = Colors.blue; // underweight
-
-    if (status == BMIStatus.healthy) {
-      statusColor = Colors.green;
-    } else if (status == BMIStatus.overweight) {
-      statusColor = Colors.yellow;
-    } else if (status == BMIStatus.obese) {
-      statusColor = Colors.red;
+    Color statusColor;
+    switch (status) {
+      case BMIStatus.underweight:
+        statusColor = Colors.blue;
+        break;
+      case BMIStatus.healthy:
+        statusColor = Colors.green;
+        break;
+      case BMIStatus.overweight:
+        statusColor = Colors.yellow;
+        break;
+      case BMIStatus.obese:
+        statusColor = Colors.red;
+        break;
     }
 
     return Dialog(
-      backgroundColor: Theme.of(context).colorScheme.secondary,
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       child: Container(
         height: 500,
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
