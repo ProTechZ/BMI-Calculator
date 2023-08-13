@@ -37,6 +37,11 @@ class _BMICalculatorState extends State<BMICalculator> {
 
   void onPressAddEntry() {
     showModalBottomSheet(
+      useSafeArea: true,
+      isScrollControlled: true,
+      constraints: const BoxConstraints(
+        maxWidth: double.infinity,
+      ),
       context: context,
       builder: (ctx) => NewBMIEntry(
         addEntry: addEntry,

@@ -110,74 +110,78 @@ class _NewBMIEntryState extends State<NewBMIEntry> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Add New Entry', style: textTheme.titleMedium),
-              UnitSystemDropDown(
-                selectedUnitSystem: selectedUnitSystem,
-                onChange: onChangeUnitSystem,
-              )
-            ],
-          ),
-          const SizedBox(height: 20),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: heightController,
-                  keyboardType: TextInputType.number,
-                  style: textTheme.labelMedium,
-                  decoration: InputDecoration(
-                    suffix: Text(heightSuffix),
-                    label: Text('Height', style: textTheme.labelSmall),
+      height: double.infinity,
+      margin: EdgeInsets.fromLTRB(30, 10, 30, 10 + keyboardSpace),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Add New Entry', style: textTheme.titleMedium),
+                UnitSystemDropDown(
+                  selectedUnitSystem: selectedUnitSystem,
+                  onChange: onChangeUnitSystem,
+                )
+              ],
+            ),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: heightController,
+                    keyboardType: TextInputType.number,
+                    style: textTheme.labelMedium,
+                    decoration: InputDecoration(
+                      suffix: Text(heightSuffix),
+                      label: Text('Height', style: textTheme.labelSmall),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 30),
-              Expanded(
-                child: TextField(
-                  controller: weightController,
-                  style: textTheme.labelMedium,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    suffix: Text(weightSuffix),
-                    label: Text('Weight', style: textTheme.labelSmall),
+                const SizedBox(width: 30),
+                Expanded(
+                  child: TextField(
+                    controller: weightController,
+                    style: textTheme.labelMedium,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      suffix: Text(weightSuffix),
+                      label: Text('Weight', style: textTheme.labelSmall),
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          Row(
-            children: [
-              Text(
-                dateFormatter.format(selectedDate),
-                style: textTheme.labelSmall,
-              ),
-              IconButton(
-                onPressed: onPickDate,
-                icon: const Icon(Icons.calendar_month_outlined),
-              ),
-              const Spacer(),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('Cancel'),
-              ),
-              ElevatedButton(
-                onPressed: onSubmit,
-                child: const Text('Submit'),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                Text(
+                  dateFormatter.format(selectedDate),
+                  style: textTheme.labelSmall,
+                ),
+                IconButton(
+                  onPressed: onPickDate,
+                  icon: const Icon(Icons.calendar_month_outlined),
+                ),
+                const Spacer(),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Cancel'),
+                ),
+                ElevatedButton(
+                  onPressed: onSubmit,
+                  child: const Text('Submit'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
